@@ -1,8 +1,10 @@
 const router = require('express').Router();
+const userController = require('../Controllers/userController')
 
 
+router.post('/createUser',userController.createUser) // create User No Need
 
-router.post('/api/authenticate')    //should perform user authentication and return a JWT token.
+router.post('/api/authenticate',userController.login)    //should perform user authentication and return a JWT token.
 
 router.post('/api/follow/userId/:id')  //authenticated user would follow user with {id}
 

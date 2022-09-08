@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+const objectId = mongoose.Schema.Types.ObjectId
     
     let Post = mongoose.model('Post', {
         title:String,
@@ -6,7 +7,7 @@ let mongoose = require('mongoose');
         created_at: Date,
         comments:[String],
         likes: Number,
-        author: String
+        authorId:{objectId,ref:'User'}
     });
     
     module.exports = Post;
