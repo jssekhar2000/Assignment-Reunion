@@ -17,7 +17,7 @@ const createUser = async (req,res)=>{
       let data = req.body;
       
       if (Object.keys(data).length == 0 ){
-        return res.status(400).send({status:false ,msg:"Invalid REQUEST,Please provide User details "});
+        return res.status(400).send({status:false ,msg:"Invalid Request,Please provide User details "});
       }
       if (!data.name){
         return res.status(400).send({status:false ,msg:"Name is Mandatory"});
@@ -46,8 +46,8 @@ const createUser = async (req,res)=>{
         return res.status(201).send({status:true , msg:'User Sucessfully registered'});
     }
     catch(error){
-        console.log("This is the error:",error.message );
-        res.status(500).send({status:false , msg: error.message});
+        
+        return res.status(500).send({status:false , msg: error.message});
     }
   }
 
