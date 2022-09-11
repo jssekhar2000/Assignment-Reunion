@@ -17,17 +17,7 @@ const postSchema = new mongoose.Schema({
         required:true,
         default:0
     },
-    likedUser:{
-        type:[objectId],
-        ref:'User',
-        default:[]
-    },
-    unlikes:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    unlikedUser:{
+    likedUsers:{
         type:[objectId],
         ref:'User',
         default:[]

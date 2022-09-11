@@ -16,17 +16,17 @@ router.get('/api/user',auth.authentication,userController.getProfile)     // sho
 
 router.post('/api/posts',auth.authentication,postController.createPost)    // would add a new post created by the authenticated user.
 
-router.delete('api/posts/:id') // would delete post with {id} created by the authenticated user.
+router.delete('/api/posts/:id',auth.authentication,postController.deletePost) // would delete post with {id} created by the authenticated user.
 
-router.post('/api/like/:id')   //would like the post with {id} by the authenticated user.
+router.post('/api/like/:id',auth.authentication,postController.like)   //would like the post with {id} by the authenticated user.
 
-router.post('/api/unlike/:id')  // would unlike the post with {id} by the authenticated user.
+router.post('/api/unlike/:id',auth.authentication,postController.unlike)  // would unlike the post with {id} by the authenticated user.
 
-router.post('/api/comment/:id')  // add comment for post with {id} by the authenticated user.
+router.post('/api/comment/:id',auth.authentication,postController.comment)  // add comment for post with {id} by the authenticated user.
 
-router.get('/api/posts/:id')  //would return a single post with {id} populated with its number of likes and comments  
+router.get('/api/posts/:id',auth.authentication,postController.getPost)  //would return a single post with {id} populated with its number of likes and comments  
 
-router.get('/api/all_posts')    // would return all posts created by authenticated user sorted by post time.
+router.get('/api/all_posts',auth.authentication,postController.getPosts)    // would return all posts created by authenticated user sorted by post time.
 
 
 

@@ -1,6 +1,7 @@
 const userModel = require('../Models/userModel');
 const jwt = require('jsonwebtoken');              // import jsonwebtoken to generate token
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const mongoose = require("mongoose")
 
 //==================================================================
 // Email VAlidation Regex
@@ -9,6 +10,11 @@ const isValidEmail = function(email) {
     return re.test(email) 
   
 }
+// to check valid ObjectId
+const isValidObjectId = (objectId) => {
+  if (mongoose.Types.ObjectId.isValid(objectId)) return true;
+  return false;
+};
 
 //=============================Create User Api=====================================
 
@@ -97,6 +103,10 @@ const createUser = async (req,res)=>{
       let myId = req.userId;
       let userId = req.params.id
 
+      if(!isValidObjectId(userId)){
+        return res.status(400).send({status:false,message:"Invalid User ID"})
+    }
+
       if(userId === myId){
             return res.status(400).send({status:false,msg: "You are not allow to follow/unfollow your own profile."})
           }
@@ -129,6 +139,10 @@ const createUser = async (req,res)=>{
     try{
       let myId = req.userId;
       let userId = req.params.id
+
+      if(!isValidObjectId(userId)){
+        return res.status(400).send({status:false,message:"Invalid User ID"})
+    }
     
       if(userId === myId){
         return res.status(400).send({status:false,msg: "You are not allow to follow/unfollow your own profile."})
