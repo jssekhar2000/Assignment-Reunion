@@ -221,8 +221,15 @@ const getPosts = async (req,res) =>{
     try{
         let userId = req.userId
 
-        let foundPosts = await postModel.find({userId:userId,isDeleted:false}).select({__v:0,updatedAt:0,likedUsers:0,isDeleted:0}).sort({createdAt:1});
-
+        let foundPosts = await postModel.find({userId:userId,isDeleted:false}).select({__v:0,updatedAt:0,likedUsers:0,isDeleted:0,userId:0}).sort({createdAt:1});
+        //let foundComments = await commentModel.find({useId:userId})
+        // for(let i=0;i<foundPosts.length;i++){
+        //     let postId = foundPosts[i]._id
+        //     //console.log(postId)
+        //     let comments = foundComments.filter((n)=> {console.log(n.postId===postId);if(n.postId == postId){return n}})
+        //     //console.log(comments)
+        //     foundPosts.comments = comments
+        // }
         return res.status(200).send({status:true,Posts:foundPosts})
 
     }
